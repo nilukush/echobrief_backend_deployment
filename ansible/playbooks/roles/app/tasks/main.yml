@@ -1,0 +1,28 @@
+---
+- name: Install dependencies
+  # Add tasks to install app dependencies
+  # Example tasks:
+  apt:
+    name:
+      - python3
+      - python3-pip
+    state: present
+
+- name: Install application dependencies
+  pip:
+    name:
+      - flask
+      - gunicorn
+    state: present
+
+- name: Deploy application
+  # Add tasks to deploy the application
+  # Example tasks:
+  copy:
+    src: /Users/nileshkumar/gh/echobrief_backend/app/
+    dest: /opt/echobrief/app/
+
+- name: Start application
+  service:
+    name: app
+    state: started

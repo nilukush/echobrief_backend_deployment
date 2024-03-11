@@ -1,0 +1,22 @@
+---
+- name: Install database server
+  # Add tasks to install the database server
+  # Example tasks:
+  apt:
+    name: postgresql
+    state: present
+
+- name: Configure database
+  # Add tasks to configure the database
+  # Example tasks:
+  postgresql_db:
+    name: echobrief_db
+
+- name: Load encrypted variables
+  include_vars:
+    file: secrets.yml
+
+- name: Create application database user
+  postgresql_user:
+    name: echobrief_db_user
+    password: "{{ vault_echobrief_db_password }}"

@@ -1,0 +1,28 @@
+---
+- hosts: app
+  tasks:
+    - name: Configure application
+      # Add application configuration tasks
+      # Example tasks:
+      template:
+        src: app.conf.j2
+        dest: /opt/echobrief/config/app.conf
+
+    - name: Restart application
+      service:
+        name: app
+        state: restarted
+
+- hosts: database
+  tasks:
+    - name: Configure database
+      # Add database configuration tasks
+      # Example tasks:
+      template:
+        src: db.conf.j2
+        dest: /opt/echobrief/config/db.conf
+
+    - name: Restart database service
+      service:
+        name: database
+        state: restarted
